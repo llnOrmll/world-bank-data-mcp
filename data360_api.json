@@ -1,0 +1,938 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Data360 API",
+    "description": "This API provides users access to metadata and data files for datasets within the World Bank's Data360 Data.",
+    "contact": {
+      "name": "Data360 Data Support",
+      "email": "data@worldbank.org"
+    },
+    "license": {
+      "name": "Creative Commons 4.0 by Attribution",
+      "url": "https://creativecommons.org/licenses/by/4.0"
+    },
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://data360api.worldbank.org",
+      "description": "API root URL"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Search",
+      "description": "Endpoints to search Data360."
+    },
+    {
+      "name": "Data",
+      "description": "Endpoints to retrieve data."
+    },
+    {
+      "name": "Metadata",
+      "description": "Endpoints to retrieve metadata."
+    },
+    {
+      "name": "Other",
+      "description": "Endpoints providing other functionalities."
+    }
+  ],
+  "paths": {
+    "/data360/data": {
+      "get": {
+        "summary": "Data based on provided filters",
+        "description": "Retrieves dataset or indicators data based on a range of query filters.",
+        "tags": [
+          "Data"
+        ],
+        "parameters": [
+          { "$ref": "#/components/parameters/databaseIdQuery" },
+          { "$ref": "#/components/parameters/indicatorQuery" },
+          { "$ref": "#/components/parameters/refAreaQuery" },
+          { "$ref": "#/components/parameters/sexQuery" },
+          { "$ref": "#/components/parameters/ageQuery" },
+          { "$ref": "#/components/parameters/urbanisationQuery" },
+          { "$ref": "#/components/parameters/compBreakdown1Query" },
+          { "$ref": "#/components/parameters/compBreakdown2Query" },
+          { "$ref": "#/components/parameters/compBreakdown3Query" },
+          { "$ref": "#/components/parameters/timePeriodQuery" },
+          { "$ref": "#/components/parameters/freqQuery" },
+          { "$ref": "#/components/parameters/unitMeasureQuery" },
+          { "$ref": "#/components/parameters/unitTypeQuery" },
+          { "$ref": "#/components/parameters/unitMultQuery" },
+          { "$ref": "#/components/parameters/timePeriodFromQuery" },
+          { "$ref": "#/components/parameters/timePeriodToQuery" },
+          { "$ref": "#/components/parameters/skipQuery" }
+        ],
+        "responses": {
+          "200": {
+        "description": "Success. Returns the total count of matching records along with an array of data objects.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DataResponse"
+            },
+            "examples": {
+              "sample": {
+                "summary": "Sample response",
+                "value": {
+                  "count": 7204,
+                  "value": [
+                    {
+                      "OBS_VALUE": "38.7168",
+                      "TIME_FORMAT": "P1Y",
+                      "UNIT_MULT": 0,
+                      "COMMENT_OBS": null,
+                      "OBS_STATUS": "A",
+                      "OBS_CONF": "PU",
+                      "AGG_METHOD": "_Z",
+                      "DECIMALS": "2",
+                      "COMMENT_TS": "Primary completion rate, female (% of relevant age group)",
+                      "DATA_SOURCE": "WB_WDI",
+                      "LATEST_DATA": false,
+                      "DATABASE_ID": "WB_WDI",
+                      "INDICATOR": "WB_WDI_SE_PRM_CMPT_FE_ZS",
+                      "REF_AREA": "ARB",
+                      "SEX": "F",
+                      "AGE": "_T",
+                      "URBANISATION": "_T",
+                      "COMP_BREAKDOWN_1": "_Z",
+                      "COMP_BREAKDOWN_2": "_Z",
+                      "COMP_BREAKDOWN_3": "_Z",
+                      "TIME_PERIOD": "1970",
+                      "FREQ": "A",
+                      "UNIT_MEASURE": "PT",
+                      "UNIT_TYPE": null
+                    },
+                    {
+                      "OBS_VALUE": "41.1682",
+                      "TIME_FORMAT": "P1Y",
+                      "UNIT_MULT": 0,
+                      "COMMENT_OBS": null,
+                      "OBS_STATUS": "A",
+                      "OBS_CONF": "PU",
+                      "AGG_METHOD": "_Z",
+                      "DECIMALS": "2",
+                      "COMMENT_TS": "Primary completion rate, female (% of relevant age group)",
+                      "DATA_SOURCE": "WB_WDI",
+                      "LATEST_DATA": false,
+                      "DATABASE_ID": "WB_WDI",
+                      "INDICATOR": "WB_WDI_SE_PRM_CMPT_FE_ZS",
+                      "REF_AREA": "EAR",
+                      "SEX": "F",
+                      "AGE": "_T",
+                      "URBANISATION": "_T",
+                      "COMP_BREAKDOWN_1": "_Z",
+                      "COMP_BREAKDOWN_2": "_Z",
+                      "COMP_BREAKDOWN_3": "_Z",
+                      "TIME_PERIOD": "1970",
+                      "FREQ": "A",
+                      "UNIT_MEASURE": "PT",
+                      "UNIT_TYPE": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "type": "string"
+            }
+          },
+          "text/json": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+        }
+      }
+    },
+    "/data360/disaggregation": {
+      "get": {
+        "summary": "Disaggregations for a given indicator",
+        "description": "Returns all possible disaggregations for a specific indicator.",
+        "tags": [
+          "Other"
+        ],
+        "parameters": [
+          { "$ref": "#/components/parameters/datasetIdQueryDisag" },
+          { "$ref": "#/components/parameters/indicatorQueryDisag" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/data360/indicators": {
+      "get": {
+        "summary": "List of indicator IDs",
+        "description": "Retrieves a list of indicators available in a given dataset.",
+        "tags": [
+          "Data"
+        ],
+        "parameters": [
+          { "$ref": "#/components/parameters/datasetIdQuery" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/data360/metadata": {
+      "post": {
+        "summary": "Metadata based on provided filters",
+        "description": "Retrieves metadata based on a range of query filters.",
+        "tags": [
+          "Metadata"
+        ],
+        "requestBody": {
+          "description": "A JSON object containing a single 'query' property with the raw search query string. The query string follows standard syntax for filtering and selecting fields.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The complete search query string. This string should include all query parameters using the supported syntax. For example: \"*&$filter=series_description/database_id eq 'WB_WDI'&$select=series_description/database_id,series_description/idno\""
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Retrieve all metadata fields for a given indicator",
+                  "value": {
+                    "query": "&$filter=series_description/idno eq 'WB_WDI_SP_POP_TOTL'"
+                  }
+                },
+                "example2": {
+                  "summary": "Retrieve specific metadata fields for a given indicator",
+                  "value": {
+                    "query": "&$filter=series_description/idno eq 'WB_WDI_SP_POP_TOTL'&$select=series_description/database_id,series_description/idno"
+                  }
+                },
+                "example3": {
+                  "summary": "Retrieve specific metadata fields for all indicators in a given database",
+                  "value": {
+                    "query": "&$filter=series_description/database_id eq 'WB_WDI'&$select=series_description/database_id,series_description/idno"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/data360/searchv2": {
+      "post": {
+        "summary": "Search function",
+        "description": "Performs a search of Data360 based on the search parameters.",
+        "tags": [
+          "Search"
+        ],
+        "requestBody": {
+          "description": "Vector search query parameters. Only the minimal set is shown in the example.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchQuerySchema"
+              },
+              "examples": {
+                "minimal": {
+                  "summary": "Simple keyword search",
+                  "value": {
+                    "count": true,
+                    "select": "series_description/idno, series_description/name, series_description/database_id",
+                    "search": "poverty",
+                    "top": 10
+                  }
+                },
+                "advanced": {
+                  "summary": "Searching only for indicators tagged with a specific topic",
+                  "value": {
+                    "count": false,
+                    "filter": "series_description/topics/any(t: t/name eq 'Health') and type eq 'indicator'",
+                    "orderby": "series_description/name",
+                    "select": "series_description/idno, series_description/name, series_description/database_id",
+                    "search": "nutrition",
+                    "top": 20,
+                    "skip": 0
+                  }
+                  }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "databaseIdQuery": {
+        "name": "DATABASE_ID",
+        "in": "query",
+        "description": "Unique identifier for the database.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI"
+      },
+      "databaseIdQueryInd": {
+        "name": "databaseId",
+        "in": "query",
+        "description": "Unique identifier for the database.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI"
+      },
+      "datasetIdQuery": {
+        "name": "datasetId",
+        "in": "query",
+        "description": "Unique identifier for the database.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI"
+      },
+      "topQuery": {
+        "name": "top",
+        "in": "query",
+        "description": "Maximum number of records to return.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 1000
+        },
+        "example": 20
+      },
+      "skipQuery": {
+        "name": "skip",
+        "in": "query",
+        "description": "Number of records to skip. Each API call returns a maximum of 1000 records. Use the skip parameter to paginate through the results.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 0
+        },
+        "example": 0
+      },
+      "indicatorQuery": {
+        "name": "INDICATOR",
+        "in": "query",
+        "description": "Indicator ID.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI_SP_POP_TOTL"
+      },
+      "indicatorQueryDisag": {
+        "name": "indicatorId",
+        "in": "query",
+        "description": "Indicator ID.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI_SP_POP_TOTL"
+      },
+      "refAreaQuery": {
+        "name": "REF_AREA",
+        "in": "query",
+        "description": "Reference area code (e.g., country code).",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "sexQuery": {
+        "name": "SEX",
+        "in": "query",
+        "description": "Sex of the subjects, if applicable.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "ageQuery": {
+        "name": "AGE",
+        "in": "query",
+        "description": "Age group filter.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "urbanisationQuery": {
+        "name": "URBANISATION",
+        "in": "query",
+        "description": "Urbanisation filter.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "compBreakdown1Query": {
+        "name": "COMP_BREAKDOWN_1",
+        "in": "query",
+        "description": "Indicator specific dimension.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "compBreakdown2Query": {
+        "name": "COMP_BREAKDOWN_2",
+        "in": "query",
+        "description": "Indicator specific dimensionn.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "compBreakdown3Query": {
+        "name": "COMP_BREAKDOWN_3",
+        "in": "query",
+        "description": "Indicator specific dimensionn.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "timePeriodQuery": {
+        "name": "TIME_PERIOD",
+        "in": "query",
+        "description": "Time period for the data.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "freqQuery": {
+        "name": "FREQ",
+        "in": "query",
+        "description": "Frequency of the data.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "unitMeasureQuery": {
+        "name": "UNIT_MEASURE",
+        "in": "query",
+        "description": "Unit of measure for the data.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "unitTypeQuery": {
+        "name": "UNIT_TYPE",
+        "in": "query",
+        "description": "Type of unit (e.g., 'currency', 'percentage').",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "unitMultQuery": {
+        "name": "UNIT_MULT",
+        "in": "query",
+        "description": "Multiplier for the unit.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "timePeriodFromQuery": {
+        "name": "timePeriodFrom",
+        "in": "query",
+        "description": "Start of the time period range.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "timePeriodToQuery": {
+        "name": "timePeriodTo",
+        "in": "query",
+        "description": "End of the time period range.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "bondTypeQuery": {
+        "name": "BOND_TYPE",
+        "in": "query",
+        "description": "Type of bond, if applicable.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "tenorBucketQuery": {
+        "name": "TENOR_BUCKET",
+        "in": "query",
+        "description": "Bucket for the bond tenor.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "issuerTypeQuery": {
+        "name": "ISSUER_TYPE",
+        "in": "query",
+        "description": "Type of issuer.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "issNameQuery": {
+        "name": "ISS_NAME",
+        "in": "query",
+        "description": "Name of the issuer.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "isinQuery": {
+        "name": "ISIN",
+        "in": "query",
+        "description": "International Securities Identification Number.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "tenorQuery": {
+        "name": "TENOR",
+        "in": "query",
+        "description": "Tenor of the bond.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "outstandingQuery": {
+        "name": "OUTSTANDING",
+        "in": "query",
+        "description": "Outstanding value, if applicable.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "dealSizeQuery": {
+        "name": "DEAL_SIZE",
+        "in": "query",
+        "description": "Deal size for the bond issuance.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "metricQuery": {
+        "name": "METRIC",
+        "in": "query",
+        "description": "Metric to be used for the data.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "currencyQuery": {
+        "name": "CURRENCYy",
+        "in": "query",
+        "description": "Currency code (e.g., USD, EUR).",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "dateIssQuery": {
+        "name": "DATE_ISS",
+        "in": "query",
+        "description": "Issue date of the bond.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "dateMatQuery": {
+        "name": "DATE_MAT",
+        "in": "query",
+        "description": "Maturity date of the bond.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "isLatestDataQuery": {
+        "name": "isLatestData",
+        "in": "query",
+        "description": "Flag indicating whether to retrieve the latest data.",
+        "required": false,
+        "schema": {
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        },
+        "example": ""
+      },
+      "formatQuery": {
+        "name": "format",
+        "in": "query",
+        "description": "Response format, e.g., json.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "default": "json"
+        },
+        "example": ""
+      },
+      "selectQuery": {
+        "name": "select",
+        "in": "query",
+        "description": "Fields to select in the response.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "filterQuery": {
+        "name": "filter",
+        "in": "query",
+        "description": "Filter criteria for the data.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": ""
+      },
+      "datasetIdQueryDisag": {
+        "name": "datasetId",
+        "in": "query",
+        "description": "Unique identifier for the dataset.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI"
+      },
+      "indicatorIdQuery": {
+        "name": "indicatorId",
+        "in": "query",
+        "description": "Unique identifier for the indicator.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "WB_WDI_SP_POP_TOTL"
+      },
+      "actionTypeQuery": {
+        "name": "type",
+        "in": "query",
+        "description": "Type of user action to filter by.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "click"
+      }
+    },
+    "schemas": {
+      "SearchQuerySchema": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "boolean",
+            "description": "When set to true, the response will include the total count of matching results.",
+            "example": true
+          },
+          "filter": {
+            "type": "string",
+            "description": "A filter expression to narrow down the search results. Remove from the body of the request if no filtering needed.",
+            "example": "series_description/topics/any(t: t/name eq 'Infrastructure: Transportation')"
+          },
+          "orderby": {
+            "type": "string",
+            "description": "Specifies the ordering of the results. Leave empty to apply default ordering.",
+            "example": "series_description/name"
+          },
+          "select": {
+            "type": "string",
+            "description": "A comma-separated list of fields to include in the response.",
+            "example": "series_description/idno, series_description/name, series_description/database_id"
+          },
+          "searchFields": {
+            "type": "string",
+            "description": "Specifies which fields should be searched. Leave empty to search all available fields.",
+            "example": "series_description/name"
+          },
+          "search": {
+            "type": "string",
+            "description": "The search term to be applied.",
+            "example": "poverty"
+          },
+          "top": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The maximum number of results to return.",
+            "example": 5
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of results to skip, useful for pagination.",
+            "example": 0
+          },
+          "facets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "vectorFilterModeSearch": {
+            "type": "string",
+            "nullable": true
+          },
+          "vectorQueries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VectorQueryModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Threshold": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VectorQueryModel": {
+        "type": "object",
+        "properties": {
+          "vector": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            },
+            "nullable": true
+          },
+          "fields": {
+            "type": "string",
+            "nullable": true
+          },
+          "kind": {
+            "type": "string",
+            "nullable": true
+          },
+          "k": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "threshold": {
+            "$ref": "#/components/schemas/Threshold"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataResponse": {
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of matching records."
+    },
+    "value": {
+      "type": "array",
+      "description": "Array of data records.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "OBS_VALUE": {
+            "type": "string",
+            "description": "Observation value."
+          },
+          "TIME_FORMAT": {
+            "type": "string",
+            "description": "Time format, e.g., period (P1Y)."
+          },
+          "UNIT_MULT": {
+            "type": "integer",
+            "description": "Multiplier for the unit."
+          },
+          "COMMENT_OBS": {
+            "type": ["string", "null"],
+            "description": "Comment for the observation."
+          },
+          "OBS_STATUS": {
+            "type": "string",
+            "description": "Observation status."
+          },
+          "OBS_CONF": {
+            "type": "string",
+            "description": "Observation confidence."
+          },
+          "AGG_METHOD": {
+            "type": "string",
+            "description": "Aggregation method."
+          },
+          "DECIMALS": {
+            "type": "string",
+            "description": "Number of decimal places."
+          },
+          "COMMENT_TS": {
+            "type": "string",
+            "description": "Comment on the timeseries."
+          },
+          "DATA_SOURCE": {
+            "type": "string",
+            "description": "Identifier for the data source."
+          },
+          "LATEST_DATA": {
+            "type": "boolean",
+            "description": "Indicates if the data is the latest available."
+          },
+          "DATABASE_ID": {
+            "type": "string",
+            "description": "Identifier for the database."
+          },
+          "INDICATOR": {
+            "type": "string",
+            "description": "Identifier for the indicator."
+          },
+          "REF_AREA": {
+            "type": "string",
+            "description": "Reference area (e.g., country or region code)."
+          },
+          "SEX": {
+            "type": "string",
+            "description": "Sex of the subject."
+          },
+          "AGE": {
+            "type": "string",
+            "description": "Age group."
+          },
+          "URBANISATION": {
+            "type": "string",
+            "description": "Indicator of urbanisation."
+          },
+          "COMP_BREAKDOWN_1": {
+            "type": "string",
+            "description": "Composite breakdown dimension 1."
+          },
+          "COMP_BREAKDOWN_2": {
+            "type": "string",
+            "description": "Composite breakdown dimension 2."
+          },
+          "COMP_BREAKDOWN_3": {
+            "type": "string",
+            "description": "Composite breakdown dimension 3."
+          },
+          "TIME_PERIOD": {
+            "type": "string",
+            "description": "Time period of the observation."
+          },
+          "FREQ": {
+            "type": "string",
+            "description": "Frequency of the data."
+          },
+          "UNIT_MEASURE": {
+            "type": "string",
+            "description": "Unit of measure."
+          },
+          "UNIT_TYPE": {
+            "type": ["string", "null"],
+            "description": "Type of unit (if applicable)."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
+    }
+  }
+}
