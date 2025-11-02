@@ -20,7 +20,7 @@ METADATA_ENDPOINT = f"{DATA360_BASE_URL}/data360/metadata"
 
 # Regional and income group aggregates (not individual countries)
 AGGREGATE_CODES = {
-    "AFE", "AFW", "ARB", "CSS", "EAP", "EAS", "ECA", "ECS", "EMU", "EUU",
+    "AFE", "AFW", "ARB", "CEB", "CSS", "EAP", "EAR", "EAS", "ECA", "ECS", "EMU", "EUU",
     "FCS", "HIC", "HPC", "IBD", "IBT", "IDA", "IDB", "IDX", "INX", "LAC",
     "LCN", "LDC", "LIC", "LMC", "LMY", "LTE", "MEA", "MIC", "MNA", "NAC",
     "OED", "OSS", "PRE", "PSS", "PST", "SAS", "SSA", "SSF", "SST", "TEA",
@@ -59,9 +59,10 @@ class RetrieveDataArgs(BaseModel):
     sex: str | None = Field(default=None, description="Gender filter: 'M' or 'F' or '_T' for total")
     age: str | None = Field(default=None, description="Age group (varies by indicator)")
     # Accept str | int | None in schema to allow MCP protocol flexibility, then normalize to int
-    limit: str | int | None = Field(default=None, description="CLIENT-SIDE: Return only top N records after sorting")
+    limit: str | int | None = Field(default=20, description="CLIENT-SIDE: Return only top N records after sorting (default: 20)")
     sort_order: str = Field(default="desc", description="CLIENT-SIDE: Sort by OBS_VALUE - 'desc' or 'asc'")
     exclude_aggregates: bool = Field(default=True, description="CLIENT-SIDE: Exclude regional/income aggregates, keep only countries")
+    compact_response: bool = Field(default=True, description="CLIENT-SIDE: Return only essential fields (country, year, value) to minimize tokens. Set to false for all fields.")
 
     @field_validator('limit', mode='before')
     @classmethod
@@ -175,7 +176,8 @@ def retrieve_data(
     age: str | None = None,
     limit: int | None = None,
     sort_order: str = "desc",
-    exclude_aggregates: bool = True
+    exclude_aggregates: bool = True,
+    compact_response: bool = True
 ) -> dict[str, Any]:
     """Retrieve actual data from World Bank API"""
     
@@ -253,9 +255,21 @@ def retrieve_data(
         # CLIENT-SIDE: Apply limit to reduce tokens sent to Claude
         display_data = all_data[:limit] if limit else all_data
 
-        # Generate summary
+        # Generate summary (before compacting to preserve field names)
         unique_countries = set(d.get("REF_AREA") for d in display_data if d.get("REF_AREA"))
         unique_years = sorted(set(d.get("TIME_PERIOD") for d in display_data if d.get("TIME_PERIOD")))
+
+        # CLIENT-SIDE: Compact response to minimize tokens (only essential fields)
+        if compact_response and display_data:
+            display_data = [
+                {
+                    "country": d.get("REF_AREA"),
+                    "country_name": d.get("REF_AREA_label"),
+                    "year": d.get("TIME_PERIOD"),
+                    "value": d.get("OBS_VALUE"),
+                }
+                for d in display_data
+            ]
 
         return {
             "success": True,
@@ -288,32 +302,44 @@ async def list_tools() -> list[Tool]:
     return [
         Tool(
             name="search_datasets",
-            description="""[STEP 1/3] Search World Bank Data360 for datasets.
+            description="""<purpose>
+Search World Bank Data360 for datasets. This is STEP 1 of 3 in the data retrieval workflow.
+Find indicator IDs and database IDs needed for subsequent data operations.
+</purpose>
 
-📋 OPTIMAL WORKFLOW:
-1. search_datasets (this tool) - Find indicator ID and database ID
-2. get_temporal_coverage - Check available years BEFORE retrieving data
-3. retrieve_data - Fetch actual data with proper year and limit parameters
+<workflow>
+  <step number="1">search_datasets (this tool) - Find indicator ID and database ID</step>
+  <step number="2">get_temporal_coverage - Check available years BEFORE retrieving data</step>
+  <step number="3">retrieve_data - Fetch actual data with proper year and limit parameters</step>
+</workflow>
 
-🔍 SEARCH OPTIMIZATION TIPS:
-- Remove punctuation: "GDP, total" → "GDP total"
-- Expand abbreviations: "GDP" → "Gross Domestic Product"
-- Add "total" for aggregates: "population" → "population total"
-- Use lowercase
-- Remove filler words: "data", "statistics"
+<optimization_tips>
+  <tip>Remove punctuation: "GDP, total" becomes "GDP total"</tip>
+  <tip>Expand abbreviations: "GDP" becomes "Gross Domestic Product"</tip>
+  <tip>Add "total" for aggregates: "population" becomes "population total"</tip>
+  <tip>Use lowercase for consistency</tip>
+  <tip>Remove filler words: "data", "statistics"</tip>
+</optimization_tips>
 
-📊 Common Databases:
-- WB_WDI: World Development Indicators (most comprehensive)
-- WB_HNP: Health, Nutrition & Population
-- WB_GDF: Global Development Finance
+<common_databases>
+  <database id="WB_WDI">World Development Indicators (most comprehensive)</database>
+  <database id="WB_HNP">Health, Nutrition and Population</database>
+  <database id="WB_GDF">Global Development Finance</database>
+</common_databases>
 
-Examples:
-- "gross domestic product total" (enhanced from "GDP")
-- "population total" (enhanced from "population data")
-- "poverty headcount ratio"
+<examples>
+  <example original="GDP">gross domestic product total</example>
+  <example original="population data">population total</example>
+  <example original="">poverty headcount ratio</example>
+</examples>
 
-Returns: List of datasets with indicator IDs, names, and search scores.
-Next step: Call get_temporal_coverage with the indicator and database from results.""",
+<returns>
+List of datasets with indicator IDs, names, database IDs, and search scores.
+</returns>
+
+<next_step>
+Call get_temporal_coverage with the indicator and database from results.
+</next_step>""",
             inputSchema=SearchDatasetsArgs.model_json_schema()
         ),
         
@@ -369,10 +395,11 @@ STRING parameters (use quotes in JSON):
   sort_order: "desc" or "asc"
 
 INTEGER parameters (no quotes in JSON):
-  limit: 10
+  limit: 10 (default: 20)
 
 BOOLEAN parameters (no quotes in JSON):
-  exclude_aggregates: true or false
+  exclude_aggregates: true or false (default: true)
+  compact_response: true or false (default: true)
 
 🎯 CORRECT JSON EXAMPLES:
 
@@ -408,7 +435,11 @@ Example 3 - All data with aggregates:
   ⚠️ DEFAULT is TRUE - only individual countries returned
   Set to false to include aggregates like "World", "High income", "Arab World"
 - sort_order: Sorts by OBS_VALUE before limiting
-- limit parameter: API fetches all, server returns top N to you (saves tokens)
+- limit parameter: Returns top N records to minimize tokens
+  ⚠️ DEFAULT is 20 - provides reasonable default, override if you need more
+- compact_response: Returns only essential fields (country, country_name, year, value)
+  ⚠️ DEFAULT is TRUE - minimizes token usage by ~75%
+  Set to false if you need all fields (REF_AREA, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, etc.)
 
 📊 AFTER RECEIVING DATA:
 Format results as markdown table:
@@ -448,7 +479,8 @@ async def call_tool(name: str, arguments: Any) -> list[TextContent]:
             args.age,
             args.limit,
             args.sort_order,
-            args.exclude_aggregates
+            args.exclude_aggregates,
+            args.compact_response
         )
         return [TextContent(type="text", text=json.dumps(result, indent=2))]
     
