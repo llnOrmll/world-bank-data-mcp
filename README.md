@@ -1,6 +1,6 @@
 # World Bank Data360 MCP Server
 
-MCP server that exposes World Bank Data360 API to Claude Desktop.
+MCP server that exposes World Bank Data360 OPEN API to Claude Desktop.
 
 ## Features
 
