@@ -34,3 +34,6 @@ build/
 
 # reference file
 search_agent.py
+
+# claude code base
+.claude/
