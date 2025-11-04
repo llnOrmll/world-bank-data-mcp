@@ -33,7 +33,8 @@ build/
 *.egg-info/
 
 # reference file
-search_agent.py
+src/experiments/
+src/world_bank_mcp/server_old.py
 
 # claude code base
 .claude/
