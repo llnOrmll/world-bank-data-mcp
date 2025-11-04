@@ -298,7 +298,7 @@ def create_server():
     def retrieve_data_tool(
         indicator: str,
         database: str,
-        year: str | None = None,
+        year: str | int | None = None,
         countries: str | None = None,
         sex: str | None = None,
         age: str | None = None,
@@ -325,8 +325,10 @@ def create_server():
         
         Returns: Data records with summary statistics.
         """
+        year_str = str(year) if year is not None else None
+
         return retrieve_data(
-            indicator, database, year, countries, sex, age,
+            indicator, database, year_str, countries, sex, age,
             limit, sort_order, exclude_aggregates, compact_response
         )
     
