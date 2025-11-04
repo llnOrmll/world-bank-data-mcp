@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "world-bank-mcp"
 version = "1.0.0"
@@ -6,17 +10,18 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 dependencies = [
-    "mcp>=1.0.0",
+    "mcp>=1.15.0",
+    "smithery>=0.4.2",
     "requests>=2.31.0",
     "pydantic>=2.0.0",
 ]
 
 [project.scripts]
-world-bank-mcp = "world_bank_mcp.server:main"
+dev = "smithery.cli.dev:main"
+playground = "smithery.cli.playground:main"
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.smithery]
+server = "world_bank_mcp.server:create_server"
 
 [tool.hatch.build.targets.wheel]
-packages = ["world_bank_mcp"]
+packages = ["src/world_bank_mcp"]
