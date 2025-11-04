@@ -1,20 +1,8 @@
 {
   "name": "@llnOrmll/world-bank-data",
   "version": "1.0.0",
-  "description": "Access World Bank Data360 datasets with 1000+ indicators for 200+ countries",
-  "author": "Your Name",
-  "homepage": "https://github.com/llnOrmll/world-bank-data-mcp",
+  "description": "Access World Bank Data360 datasets with 1000+ indicators",
   "license": "MIT",
   "runtime": "python",
-  "transport": "stdio",
-  "categories": ["data", "analytics", "research", "economics"],
-  "config": {
-    "command": "uv",
-    "args": [
-      "--directory",
-      "{INSTALL_DIR}",
-      "run",
-      "world_bank_mcp/server.py"
-    ]
-  }
+  "transport": "stdio"
 }
