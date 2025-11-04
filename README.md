@@ -1,5 +1,7 @@
 # World Bank Data360 MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@llnOrmll/world-bank-data-mcp)](https://smithery.ai/server/@llnOrmll/world-bank-data-mcp)
+
 MCP server that exposes World Bank Data360 OPEN API to Claude Desktop.
 
 ## Features
