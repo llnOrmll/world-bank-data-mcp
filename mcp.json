@@ -1,0 +1,19 @@
+{
+  "name": "world-bank-data",
+  "version": "1.0.0",
+  "description": "Access World Bank Data360 datasets with 1000+ economic and social indicators for 200+ countries",
+  "tools": [
+    {
+      "name": "search_datasets",
+      "description": "Search World Bank Data360 for datasets by keywords"
+    },
+    {
+      "name": "get_temporal_coverage",
+      "description": "Get available years for a specific dataset"
+    },
+    {
+      "name": "retrieve_data",
+      "description": "Retrieve actual data from World Bank with filtering options"
+    }
+  ]
+}
