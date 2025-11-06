@@ -364,49 +364,50 @@ def create_server():
     
     @server.tool()
     def search_datasets_tool(search_query: str, top: int = 20) -> dict[str, Any]:
-        """<purpose>
-Search World Bank Data360 for datasets. This is STEP 1 of 3 in the data retrieval workflow.
-Find indicator IDs and database IDs needed for subsequent data operations.
-</purpose>
+        """[STEP 1/3] Search World Bank Data360 for datasets.
+        <purpose>
+            Search World Bank Data360 for datasets. This is STEP 1 of 3 in the data retrieval workflow.
+            Find indicator IDs and database IDs needed for subsequent data operations.
+        </purpose>
 
-<workflow>
-  <step number="1">search_datasets (this tool) - Find indicator ID and database ID</step>
-  <step number="2">get_temporal_coverage - Check available years BEFORE retrieving data</step>
-  <step number="3">retrieve_data - Fetch actual data with proper year and limit parameters</step>
-</workflow>
+        <workflow>
+            <step number="1">search_datasets (this tool) - Find indicator ID and database ID</step>
+            <step number="2">get_temporal_coverage - Check available years BEFORE retrieving data</step>
+            <step number="3">retrieve_data - Fetch actual data with proper year and limit parameters</step>
+        </workflow>
 
-<optimization_tips>
-  <tip>Remove punctuation: "GDP, total" becomes "GDP total"</tip>
-  <tip>Expand abbreviations: "GDP" becomes "Gross Domestic Product"</tip>
-  <tip>Add "total" for aggregates: "population" becomes "population total"</tip>
-  <tip>Use lowercase for consistency</tip>
-  <tip>Remove filler words: "data", "statistics"</tip>
-</optimization_tips>
+        <optimization_tips>
+            <tip>Remove punctuation: "GDP, total" becomes "GDP total"</tip>
+            <tip>Expand abbreviations: "GDP" becomes "Gross Domestic Product"</tip>
+            <tip>Add "total" for aggregates: "population" becomes "population total"</tip>
+            <tip>Use lowercase for consistency</tip>
+            <tip>Remove filler words: "data", "statistics"</tip>
+        </optimization_tips>
 
-<common_databases>
-  <database id="WB_WDI">World Development Indicators (most comprehensive)</database>
-  <database id="WB_HNP">Health, Nutrition and Population</database>
-  <database id="WB_GDF">Global Development Finance</database>
-</common_databases>
+        <common_databases>
+            <database id="WB_WDI">World Development Indicators (most comprehensive)</database>
+            <database id="WB_HNP">Health, Nutrition and Population</database>
+            <database id="WB_GDF">Global Development Finance</database>
+        </common_databases>
 
-<examples>
-  <example original="GDP">gross domestic product total</example>
-  <example original="population data">population total</example>
-  <example original="">poverty headcount ratio</example>
-</examples>
+        <examples>
+            <example original="GDP">gross domestic product total</example>
+            <example original="population data">population total</example>
+            <example original="">poverty headcount ratio</example>
+        </examples>
 
-<returns>
-List of datasets with indicator IDs, names, database IDs, and search scores.
-</returns>
+        <returns>
+            List of datasets with indicator IDs, names, database IDs, and search scores.
+        </returns>
 
-<next_step>
-Call get_temporal_coverage with the indicator and database from results.
-</next_step>"""
+        <next_step>
+            Call get_temporal_coverage with the indicator and database from results.
+        </next_step>"""
         return search_datasets(search_query, top)
     
     @server.tool()
     def get_temporal_coverage_tool(indicator: str, database: str) -> dict[str, Any]:
-        """Get available years for a specific dataset. STEP 2 of 3.
+        """[STEP 2/3] Get available years for a specific dataset.
         
         CRITICAL: Always call this BEFORE retrieve_data to avoid errors.
         
