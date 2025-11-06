@@ -35,7 +35,7 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
       "command": "uv",
       "args": [
         "--directory",
-        "/Users/llnormll/WorkSpace/world-bank-mcp",
+        "/path/to/world-bank-mcp",
         "run",
         "world_bank_mcp/server.py"
       ]
