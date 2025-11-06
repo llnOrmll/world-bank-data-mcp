@@ -35,6 +35,14 @@ build/
 # reference file
 src/experiments/
 src/world_bank_mcp/server_old.py
+convert_metadata.py
+create_popular_list.py
+Metadata_Indicator.csv
+IMPLEMENTATION_SUMMARY.md
+CHANGES_SUMMARY.md
+run_server.sh
+test_mcp_protocol.py
+test_server_start.py
 
 # claude code base
 .claude/

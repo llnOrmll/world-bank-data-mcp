@@ -1,0 +1,247 @@
+{
+  "metadata": {
+    "total_indicators": 38,
+    "description": "Curated list of most commonly requested World Bank indicators",
+    "categories": [
+      "Infrastructure",
+      "Economy",
+      "Environment",
+      "Demographics",
+      "Technology",
+      "Education",
+      "Labor",
+      "Health",
+      "Poverty & Inequality"
+    ]
+  },
+  "indicators": [
+    {
+      "category": "Demographics",
+      "code": "SP.POP.TOTL",
+      "name": "Population, total",
+      "description": "Total population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship. The values shown are midyear estimates."
+    },
+    {
+      "category": "Demographics",
+      "code": "SP.POP.GROW",
+      "name": "Population growth (annual %)",
+      "description": "Annual population growth rate for year t is the exponential rate of growth of midyear population from year t-1 to t, expressed as a percentage. Population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship."
+    },
+    {
+      "category": "Demographics",
+      "code": "EN.POP.DNST",
+      "name": "Population density (people per sq. km of land area)",
+      "description": "Population density is midyear population divided by land area in square kilometers. Population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship--except for refugees not permanently settled in the country of asylum, who are generally considered part of the population of their country of origin. Land area is a country's total area, excluding area under inland water bodies, national claims to continental shelf, and exclusive economic zones. In most cases the definition of inland water bodies includes major rivers and lakes."
+    },
+    {
+      "category": "Demographics",
+      "code": "SH.H2O.SMDW.UR.ZS",
+      "name": "People using safely managed drinking water services, urban (% of urban population)",
+      "description": "The percentage of people using drinking water from an improved source that is accessible on premises, available when needed and free from faecal and priority chemical contamination. Improved water sources include piped water, boreholes or tubewells, protected dug wells, protected springs, and packaged or delivered water."
+    },
+    {
+      "category": "Demographics",
+      "code": "SP.DYN.TFRT.IN",
+      "name": "Fertility rate, total (births per woman)",
+      "description": "Total fertility rate represents the number of children that would be born to a woman if she were to live to the end of her childbearing years and bear children in accordance with age-specific fertility rates of the specified year."
+    },
+    {
+      "category": "Economy",
+      "code": "NY.GDP.MKTP.CD",
+      "name": "GDP (current US$)",
+      "description": "Gross domestic product is the total income earned through the production of goods and services in an economic territory during an accounting period. It can be measured in three different ways: using either the expenditure approach, the income approach, or the production approach. This indicator is expressed in current prices, meaning no adjustment has been made to account for price changes over time. This indicator is expressed in United States dollars."
+    },
+    {
+      "category": "Economy",
+      "code": "NY.GDP.PCAP.KD",
+      "name": "GDP per capita (constant 2015 US$)",
+      "description": "Gross domestic product is the total income earned through the production of goods and services in an economic territory during an accounting period. It can be measured in three different ways: using either the expenditure approach, the income approach, or the production approach. The core indicator has been divided by the general population to achieve a per capita estimate.This indicator is expressed in constant prices, meaning the series has been adjusted to account for price changes over time. The reference year for this adjustment is 2015. This indicator is expressed in United States dollars."
+    },
+    {
+      "category": "Economy",
+      "code": "NY.GDP.MKTP.KD.ZG",
+      "name": "GDP growth (annual %)",
+      "description": "Gross domestic product is the total income earned through the production of goods and services in an economic territory during an accounting period. It can be measured in three different ways: using either the expenditure approach, the income approach, or the production approach. This indicator denotes the percentage change over each previous year of the constant price (base year 2015) series in United States dollars."
+    },
+    {
+      "category": "Economy",
+      "code": "FP.CPI.TOTL.ZG",
+      "name": "Inflation, consumer prices (annual %)",
+      "description": "Inflation as measured by the consumer price index reflects the annual percentage change in the cost to the average consumer of acquiring a basket of goods and services that may be fixed or changed at specified intervals, such as yearly. This indicator denotes the percentage change over each previous year of the constant price (base year 2015) series in United States dollars."
+    },
+    {
+      "category": "Economy",
+      "code": "NY.GNP.PCAP.CN",
+      "name": "GNI per capita (current LCU)",
+      "description": "Gross national income is the total income earned by all residents within an economic territory during an accounting period. It is equal to gross domestic product plus earned income receivable from abroad minus earned income payable abroad. The core indicator has been divided by the general population to achieve a per capita estimate.This indicator is expressed in current prices, meaning no adjustment has been made to account for price changes over time. This series is expressed in local currency units."
+    },
+    {
+      "category": "Economy",
+      "code": "BX.GSR.GNFS.CD",
+      "name": "Exports of goods and services (BoP, current US$)",
+      "description": "Exports of goods includes changes in the economic ownership of goods from residents of the compiling economy to non-residents, irrespective of physical movement of goods across national borders. Exports of services includes services provided by residents to non-residents. This indicator is expressed in current prices, meaning no adjustment has been made to account for price changes over time. This indicator is expressed in United States dollars."
+    },
+    {
+      "category": "Economy",
+      "code": "BM.GSR.GNFS.CD",
+      "name": "Imports of goods and services (BoP, current US$)",
+      "description": "Imports of goods includes change in the economic ownership of goods from non-residents to\n\n\nresidents of the compiling economy, irrespective of physical movement of goods across national borders. Imports of services includes services provided by non-residents to residents. This indicator is expressed in current prices, meaning no adjustment has been made to account for price changes over time. This indicator is expressed in United States dollars."
+    },
+    {
+      "category": "Health",
+      "code": "SP.DYN.LE00.IN",
+      "name": "Life expectancy at birth, total (years)",
+      "description": "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life."
+    },
+    {
+      "category": "Health",
+      "code": "SP.DYN.IMRT.IN",
+      "name": "Mortality rate, infant (per 1,000 live births)",
+      "description": "Infant mortality rate is the number of infants dying before reaching one year of age, per 1,000 live births in a given year."
+    },
+    {
+      "category": "Health",
+      "code": "SH.DYN.MORT",
+      "name": "Mortality rate, under-5 (per 1,000 live births)",
+      "description": "Under-five mortality rate is the probability per 1,000 that a newborn baby will die before reaching age five, if subject to age-specific mortality rates of the specified year."
+    },
+    {
+      "category": "Health",
+      "code": "SH.STA.MMRT",
+      "name": "Maternal mortality ratio (modeled estimate, per 100,000 live births)",
+      "description": "Maternal mortality ratio is the number of women who die from pregnancy-related causes while pregnant or within 42 days of pregnancy termination per 100,000 live births. The data are estimated with a regression model using information on the proportion of maternal deaths among non-AIDS deaths in women ages 15-49, fertility, birth attendants, and GDP measured using purchasing power parities (PPPs)."
+    },
+    {
+      "category": "Health",
+      "code": "SP.DYN.CBRT.IN",
+      "name": "Birth rate, crude (per 1,000 people)",
+      "description": "Crude birth rate indicates the number of live births occurring during the year, per 1,000 population estimated at midyear. Subtracting the crude death rate from the crude birth rate provides the rate of natural increase, which is equal to the rate of population change in the absence of migration."
+    },
+    {
+      "category": "Health",
+      "code": "SP.DYN.CDRT.IN",
+      "name": "Death rate, crude (per 1,000 people)",
+      "description": "Crude death rate indicates the number of deaths occurring during the year, per 1,000 population estimated at midyear. Subtracting the crude death rate from the crude birth rate provides the rate of natural increase, which is equal to the rate of population change in the absence of migration."
+    },
+    {
+      "category": "Education",
+      "code": "SE.ADT.LITR.ZS",
+      "name": "Literacy rate, adult total (% of people ages 15 and above)",
+      "description": "Adult literacy rate is the percentage of people ages 15 and above who can both read and write with understanding a short simple statement about their everyday life."
+    },
+    {
+      "category": "Education",
+      "code": "SE.PRM.ENRR",
+      "name": "School enrollment, primary (% gross)",
+      "description": "Gross enrollment ratio is the ratio of total enrollment, regardless of age, to the population of the age group that officially corresponds to the level of education shown. Primary education provides children with basic reading, writing, and mathematics skills along with an elementary understanding of such subjects as history, geography, natural science, social science, art, and music."
+    },
+    {
+      "category": "Education",
+      "code": "SE.SEC.NENR",
+      "name": "School enrollment, secondary (% net)",
+      "description": "Net enrollment rate is the ratio of children of official school age who are enrolled in school to the population of the corresponding official school age. Secondary education completes the provision of basic education that began at the primary level, and aims at laying the foundations for lifelong learning and human development, by offering more subject- or skill-oriented instruction using more specialized teachers."
+    },
+    {
+      "category": "Education",
+      "code": "SE.TER.ENRR",
+      "name": "School enrollment, tertiary (% gross)",
+      "description": "Gross enrollment ratio is the ratio of total enrollment, regardless of age, to the population of the age group that officially corresponds to the level of education shown. Tertiary education, whether or not to an advanced research qualification, normally requires, as a minimum condition of admission, the successful completion of education at the secondary level."
+    },
+    {
+      "category": "Labor",
+      "code": "SL.UEM.TOTL.ZS",
+      "name": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+      "description": "Unemployment refers to the share of the labor force that is without work but available for and seeking employment."
+    },
+    {
+      "category": "Labor",
+      "code": "SL.TLF.CACT.ZS",
+      "name": "Labor force participation rate, total (% of total population ages 15+) (modeled ILO estimate)",
+      "description": "Labor force participation rate is the proportion of the population ages 15 and older that is economically active: all people who supply labor for the production of goods and services during a specified period."
+    },
+    {
+      "category": "Labor",
+      "code": "SL.EMP.TOTL.SP.NE.ZS",
+      "name": "Employment to population ratio, 15+, total (%) (national estimate)",
+      "description": "Employment to population ratio is the proportion of a country's population that is employed."
+    },
+    {
+      "category": "Poverty & Inequality",
+      "code": "SI.POV.DDAY",
+      "name": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+      "description": "Poverty headcount ratio at $3.00 a day is the percentage of the population living on less than $3.00 a day at 2021 purchasing power adjusted prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions."
+    },
+    {
+      "category": "Poverty & Inequality",
+      "code": "SI.POV.GINI",
+      "name": "Gini index",
+      "description": "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. A Lorenz curve plots the cumulative percentages of total income received against the cumulative number of recipients, starting with the poorest individual or household. The Gini index measures the area between the Lorenz curve and a hypothetical line of absolute equality, expressed as a percentage of the maximum area under the line. Thus a Gini index of 0 represents perfect equality, while an index of 100 implies perfect inequality."
+    },
+    {
+      "category": "Poverty & Inequality",
+      "code": "SI.DST.FRST.20",
+      "name": "Income share held by lowest 20%",
+      "description": "Percentage share of income or consumption is the share that accrues to subgroups of population indicated by deciles or quintiles. Percentage shares by quintile may not sum to 100 because of rounding."
+    },
+    {
+      "category": "Environment",
+      "code": "EN.GHG.ALL.LU.MT.CE.AR5",
+      "name": "Total greenhouse gas emissions including LULUCF (Mt CO2e)",
+      "description": "A measure of annual emissions of the six greenhouse gases (GHG) covered by the Kyoto Protocol (carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), hydrofluorocarbons (HFCs), perfluorocarbons (PFCs), and sulphurhexafluoride (SF6)) from the energy, industry, waste, agriculture, and land use, land use changes, and forestry (LULUCF) sectors, standardized to carbon dioxide equivalent values. The measure is standardized to carbon dioxide equivalent values using the Global Warming Potential (GWP) factors of IPCC's 5th Assessment Report (AR5)."
+    },
+    {
+      "category": "Environment",
+      "code": "AG.LND.FRST.ZS",
+      "name": "Forest area (% of land area)",
+      "description": "Forest area (% of land area) is the share of total land area that is under natural or planted stands of trees of at least 5 meters in situ, whether productive or not, and excludes tree stands in agricultural production systems (for example, in fruit plantations and agroforestry systems) and trees in urban parks and gardens."
+    },
+    {
+      "category": "Environment",
+      "code": "EG.FEC.RNEW.ZS",
+      "name": "Renewable energy consumption (% of total final energy consumption)",
+      "description": "Renewable energy consumption is the share of renewables energy in total final energy consumption."
+    },
+    {
+      "category": "Environment",
+      "code": "EN.ATM.PM25.MC.M3",
+      "name": "PM2.5 air pollution, mean annual exposure (micrograms per cubic meter)",
+      "description": "Population-weighted exposure to ambient PM2.5 pollution is defined as the average level of exposure of a nation's population to concentrations of suspended particles measuring less than 2.5 microns in aerodynamic diameter, which are capable of penetrating deep into the respiratory tract and causing severe health damage. Exposure is calculated by weighting mean annual concentrations of PM2.5 by population in both urban and rural areas."
+    },
+    {
+      "category": "Infrastructure",
+      "code": "EG.ELC.ACCS.ZS",
+      "name": "Access to electricity (% of population)",
+      "description": "Access to electricity is the percentage of population with access to electricity. Electrification data are collected from industry, national surveys and international sources."
+    },
+    {
+      "category": "Infrastructure",
+      "code": "SH.H2O.SMDW.ZS",
+      "name": "People using safely managed drinking water services (% of population)",
+      "description": "The percentage of people using drinking water from an improved source that is accessible on premises, available when needed and free from faecal and priority chemical contamination. Improved water sources include piped water, boreholes or tubewells, protected dug wells, protected springs, and packaged or delivered water."
+    },
+    {
+      "category": "Infrastructure",
+      "code": "SH.STA.SMSS.ZS",
+      "name": "People using safely managed sanitation services (% of population)",
+      "description": "The percentage of people using improved sanitation facilities that are not shared with other households and where excreta are safely disposed of in situ or transported and treated offsite. Improved sanitation facilities include flush/pour flush to piped sewer systems, septic tanks or pit latrines: ventilated improved pit latrines, compositing toilets or pit latrines with slabs."
+    },
+    {
+      "category": "Technology",
+      "code": "IT.NET.USER.ZS",
+      "name": "Individuals using the Internet (% of population)",
+      "description": "Internet users are individuals who have used the Internet (from any location) in the last 3 months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV etc."
+    },
+    {
+      "category": "Technology",
+      "code": "IT.CEL.SETS",
+      "name": "Mobile cellular subscriptions",
+      "description": "Mobile cellular telephone subscriptions are subscriptions to a public mobile telephone service that provide access to the PSTN using cellular technology. The indicator includes (and is split into) the number of postpaid subscriptions, and the number of active prepaid accounts (i.e. that have been used during the last three months). The indicator applies to all mobile cellular subscriptions that offer voice communications. It excludes subscriptions via data cards or USB modems, subscriptions to public mobile data services, private trunked mobile radio, telepoint, radio paging and telemetry services."
+    },
+    {
+      "category": "Technology",
+      "code": "IT.NET.BBND",
+      "name": "Fixed broadband subscriptions",
+      "description": "Fixed broadband subscriptions refers to fixed subscriptions to high-speed access to the public Internet (a TCP/IP connection), at downstream speeds equal to, or greater than, 256 kbit/s. This includes cable modem, DSL, fiber-to-the-home/building, other fixed (wired)-broadband subscriptions, satellite broadband and terrestrial fixed wireless broadband. This total is measured irrespective of the method of payment. It excludes subscriptions that have access to data communications (including the Internet) via mobile-cellular networks. It should include fixed WiMAX and any other fixed wireless technologies. It includes both residential subscriptions and subscriptions for organizations."
+    }
+  ]
+}
