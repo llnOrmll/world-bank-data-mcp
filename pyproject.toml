@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "world-bank-mcp"
 version = "1.0.0"
-description = "MCP server for World Bank Data360 API"
+description = "Search 1,000+ World Bank economic and social indicators for 200+ countries. Filter by year, country, and demographics to access 60+ years of historical data."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}

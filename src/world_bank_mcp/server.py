@@ -365,6 +365,7 @@ def create_server():
     @server.tool()
     def search_datasets_tool(search_query: str, top: int = 20) -> dict[str, Any]:
         """[STEP 1/3] Search World Bank Data360 for datasets.
+        
         <purpose>
             Search World Bank Data360 for datasets. This is STEP 1 of 3 in the data retrieval workflow.
             Find indicator IDs and database IDs needed for subsequent data operations.
